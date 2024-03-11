@@ -10,11 +10,11 @@ import updateEvent from "../controllers/update-event";
 const router = express.Router();
 
 
-router.post("/new", validateRequestBody(createEventValidationSchema), createEvent)
-router.get("/get/all", getEvents)
-router.get("/get/:id", getEvent)
-router.patch("/patch/:id", validateRequestBody(updateEventValidationSchema), updateEvent)
-router.delete("/delete/:id", deleteEvent)
+router.post("/", validateRequestBody(createEventValidationSchema), createEvent)
+router.get("/", getEvents)
+router.get("/:id", getEvent)
+router.patch("/:id", validateRequestBody(updateEventValidationSchema), updateEvent)
+router.delete("/:id", deleteEvent)
 
 
 export default router;
