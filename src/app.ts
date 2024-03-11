@@ -1,13 +1,17 @@
 import express from "express"
 import userRoutes from "./domains/user";
 import logger from "./utils/logger";
+import isAuthenticated from "./middleware/is-authenticated";
+
 const app = express()
 
 const router = express.Router();
 
 router.use("/api/user", userRoutes)
+//router.use("/api/events", )
 
 app.use(express.json())
+app.use(isAuthenticated)
 app.use(router)
 
 app.use((err, req, res, next) => {
@@ -16,3 +20,13 @@ app.use((err, req, res, next) => {
   });
   
 export default app;
+
+declare global{
+    namespace Express{
+        interface Request {
+            session?:Pick<import("./domains/user/models/user-session").TUserSession, "id">
+            user?:Pick<import("./domains/user/models/user").TUser, "id">
+        }
+        interface Response{}
+    }
+}

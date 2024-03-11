@@ -1,7 +1,4 @@
-import { Request, Response } from "express"
+import { Request ,Response} from "express";
 
 type Controller = (req:Request, res:Response)=>Promise<any>
-
-export type {
-    Controller
-}
+export type {Controller}
