@@ -3,6 +3,8 @@ import { Controller } from "../../../types";
 import logger from "../../../utils/logger";
 
 const getEvents:Controller = async (req,res)=>{
+    if(!req.user.id) return res.status(403).send({status:"error", errors:["User not signed in"]})
+    
     const limit:number = Math.min(Number(req.params.limit), 100) ?? 10 
     const offset:number = Number(req.params.offset) ?? 0
     const query:string = req.params.query
@@ -14,7 +16,7 @@ const getEvents:Controller = async (req,res)=>{
         columns:{
             createdBy:false
         },
-        where:(e,{or, like})=>or(like(e.title,query), like(e.description,query)),
+        where:query ? (e,{or, like})=>or(like(e.title,query), like(e.description,query)) : undefined,
 
         with:{
             createdBy:{

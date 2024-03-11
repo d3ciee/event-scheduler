@@ -6,12 +6,12 @@ const Event = sqliteTable(
   'event',
   {
     id: text('id').primaryKey(),
-    title: text('title').unique().notNull(),
-    description:text('description').unique().notNull(),
-    date:integer("date").notNull(),
-    time:text("time"),
+    title: text('title').notNull(),
+    description:text('description').notNull(),
+    date:text("date").notNull(),
+    time:text("time").notNull(),
     createdAt: integer('created_at').notNull(),
-    createdBy:text("created_by")
+    createdBy:text("created_by").notNull(),
   }, (t)=>({
     searchIdx:index("search_idx").on(t.title, t.description)
   })

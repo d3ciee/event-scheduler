@@ -25,10 +25,6 @@ app.use(isAuthenticated)
 app.use(router)
 
 function getEvents(year: number, month: number): Array<Array<{ date: number; dayOfWeek: number | null }>> {
-    db.query.Event.findMany({
-        where:(event, {between})=>between(event.date, new Date(year,month,1).getMilliseconds() ,new Date(year,month,31).getMilliseconds() )
-    })
-
     const daysInMonth = new Date(year, month, 0).getDate();
     const firstDay = new Date(year, month - 1, 1).getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
     const daysArray: Array<Array<{ date: number; dayOfWeek: number | null }>> = [[]];
