@@ -8,7 +8,7 @@ const Event = sqliteTable(
     id: text('id').primaryKey(),
     title: text('title').unique().notNull(),
     description:text('description').unique().notNull(),
-    date:text("date"),
+    date:integer("date").notNull(),
     time:text("time"),
     createdAt: integer('created_at').notNull(),
     createdBy:text("created_by")

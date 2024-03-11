@@ -2,7 +2,10 @@ import type { NextFunction, Request, Response } from "express";
 import db from "../config/db";
 
 const isAuthenticated=async (req:Request,res:Response, next:NextFunction)=>{
-    const sessionId:string|null = req.headers["authorization"]?.split(" ")[1] ?? null
+
+    //TODO: Refresh cookies and session 
+    const sessionId:string|null = (req.headers["authorization"]?.split(" ")[1] 
+        || req.cookies["auth-token"] ) ?? null
 
     if(!sessionId){
         req.session = null

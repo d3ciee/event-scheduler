@@ -6,8 +6,9 @@ import bcrypt from "bcryptjs"
 import UserSession from "../models/user-session";
 import { SESSION_EXPIRES_IN } from "../../../consts";
 import logger from "../../../utils/logger";
+import { RequestHandler } from "express";
 
-const registerUser:Controller = async (req, res)=>{
+const registerUser:RequestHandler = async (req, res)=>{
         const userId = ulid();
         const sessionId = ulid();
      
@@ -28,6 +29,10 @@ const registerUser:Controller = async (req, res)=>{
             }) 
         ])
         .then(()=>{
+            if (req.query.setCookie == "true") res.cookie("auth-token", sessionId, {
+                httpOnly:true,
+                maxAge:SESSION_EXPIRES_IN,
+            })
             res.status(200).send({status:"success", data:{token:sessionId}})
         })
         .catch((e:any)=>{

@@ -1,0 +1,12 @@
+{"tailwindCSS.includeLanguages": {
+    "html": "html",
+    "ejs":"html",
+    "javascript": "javascript",
+    "css": "css",
+    "svelte": "html",
+  },
+  "prettier.printWidth": 80,
+
+  "editor.quickSuggestions": {
+    "strings": true
+  }}
