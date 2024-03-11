@@ -26,14 +26,17 @@ const registerUser:Controller = async (req, res)=>{
                 userAgent:req.headers["user-agent"],
                 ipAddress:req.ip ?? null,
             }) 
-        ]).catch((e:any)=>{
-            if (e.message?.includes('UNIQUE constraint failed: user.email'))  
-                res.status(409).send({status:"error", errors:["Email is already in use"]})
-            res.status(500).send({status:"error", errors:["An internal error has occured"]})
-            logger("register_user_failed", e)
+        ])
+        .then(()=>{
+            res.status(200).send({status:"success", data:{token:sessionId}})
         })
-
-        res.status(200).send({status:"success", data:{token:sessionId}})
+        .catch((e:any)=>{
+            if (e.message?.includes('UNIQUE constraint failed: user.email'))  
+                return res.status(409).send({status:"error", errors:["Email is already in use"]})
+            logger("register_user_failed", e)
+            res.status(500).send({status:"error", errors:["An internal error has occured"]})
+        })
+        
 }
 
 export default registerUser;
