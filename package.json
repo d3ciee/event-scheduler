@@ -4,18 +4,28 @@
   "description": "",
   "scripts": {
     "dev": "nodemon --exec ts-node src/index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrations:generate": "drizzle-kit generate:sqlite",
+    "migrations:push": "drizzle-kit push:sqlite",
+    "migrations:push:prod": "node scripts/run-migrations.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/express": "^4.17.1",
+    "drizzle-kit": "^0.20.14",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "@libsql/client": "^0.5.3",
+    "bcryptjs": "^2.4.3",
+    "drizzle-orm": "^0.30.1",
+    "express": "^4.17.1",
+    "ulid": "^2.3.0",
+    "zod": "^3.22.4"
   }
 }
