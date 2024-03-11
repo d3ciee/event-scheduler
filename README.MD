@@ -20,8 +20,11 @@ To validate request bodies, this projects uses Zod and express middleware to che
 Server side rendered web user interface using tailwind and ejs.
 ### Screenshots
 
+`/`
 ![Alt text](https://raw.githubusercontent.com/d3ciee/event-scheduler/main/public/images/screenshots/calender-view.jpeg)
+`/user/login`
 ![Alt text](https://raw.githubusercontent.com/d3ciee/event-scheduler/main/public/images/screenshots/login-screen.jpeg)
+`/user/register`
 ![Alt text](https://raw.githubusercontent.com/d3ciee/event-scheduler/main/public/images/screenshots/register-screen.jpeg)
 
 ## Setup
