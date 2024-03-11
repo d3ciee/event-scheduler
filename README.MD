@@ -27,7 +27,8 @@ Server side rendered web user interface using tailwind and ejs.
 `/user/register`
 ![Alt text](https://raw.githubusercontent.com/d3ciee/event-scheduler/main/public/images/screenshots/register-screen.jpeg)
 
-## Setup
+## Setup 
+Prerequisites: node.js runtime and npm package manager
 Clone this repository:
 `git clone https://github.com/d3ciee/event-scheduler.git`
 
